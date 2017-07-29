@@ -7,6 +7,7 @@ module.exports = {
     'no-unused-vars': 'error',
     'no-unused-expressions': 'error',
     'no-trailing-spaces': 'error',
+    'object-curly-spacing': ['error', 'always'],
     'sort-imports': ['error'],
     'sort-keys': ['error', 'asc'],
     indent: ['error', 2],
