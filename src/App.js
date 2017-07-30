@@ -1,10 +1,11 @@
 import './App.css';
-import React, { Component } from 'react';
+import { Link, Route } from 'react-router-dom';
+import React from 'react';
 
 const SearchPage = () => (
   <div className="search-books">
     <div className="search-books-bar">
-      <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
+      <Link className="close-search" to="/">Close</Link>
       <div className="search-books-input-wrapper">
         <input type="text" placeholder="Search by title or author"/>
       </div>
@@ -172,27 +173,16 @@ const ListBooks = () => (
           </div>
         </div>
         <div className="open-search">
-          <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+          <Link to="/search">Add a book</Link>
         </div>
       </div>
 );
 
-class BooksApp extends Component {
-  state = {
-    showSearchPage: false,
-  }
-
-  render() {
-    return (
-      <div className="app">
-        {this.state.showSearchPage ? (
-           <SearchPage />
-        ) : (
-           <ListBooks />
-        )}
-      </div>
-    );
-  }
-}
+const BooksApp = () => (
+  <div className="app">
+    <Route exact path="/" component={ListBooks} />
+    <Route path="/search" component={SearchPage} />
+  </div>
+);
 
 export default BooksApp;
