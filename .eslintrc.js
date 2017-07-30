@@ -18,6 +18,7 @@ module.exports = {
     'react/jsx-uses-vars': 'error',
     'sort-imports': ['error'],
     'sort-keys': ['error', 'asc'],
+    'keyword-spacing': ['error'],
     indent: ['error', 2],
     quotes: ['error', 'single'],
     semi: 'error',
