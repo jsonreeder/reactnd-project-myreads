@@ -4,16 +4,16 @@ import { Link } from 'react-router-dom';
 
 class ListBooks extends Component {
   state = {
-    bookshelves: {
-      currentlyReading: [],
-      read: [],
-      wantToRead: [],
-    },
+    books: {},
   };
 
   componentWillReceiveProps(newProps) {
     const { books } = newProps;
-    this.assignBooksToShelves(books);
+    const idsToBooks = {};
+    books.forEach((b) => {
+      idsToBooks[b.id] = b;
+    });
+    this.setState({ books: idsToBooks });
   }
 
   assignBooksToShelves(books) {
@@ -22,17 +22,22 @@ class ListBooks extends Component {
       read: [],
       wantToRead: [],
     };
+    if (!!Object.keys(books).length) {
+      for (let id in books) {
+        if (books.hasOwnProperty(id)) {
+          const book = books[id];
+          const simpleBook = {
+            authors: book.authors,
+            id: book.id,
+            image: book.imageLinks.smallThumbnail,
+            title: book.title,
+          };
+          bookshelves[book.shelf].push(simpleBook);
+        }
+      }
+    }
 
-    books.length && books.forEach((book) => {
-      const simpleBook = {
-        authors: book.authors,
-        image: book.imageLinks.smallThumbnail,
-        title: book.title,
-      };
-      bookshelves[book.shelf].push(simpleBook);
-    });
-
-    this.setState({ bookshelves });
+    return bookshelves;
   }
 
   prepareBookshelfComponents(bookshelves) {
@@ -40,14 +45,29 @@ class ListBooks extends Component {
     for (let key in bookshelves) {
       const books = bookshelves[key];
       const title = key;
-      const component = <Bookshelf books={books} key={key} title={title} />;
+      const component =
+        <Bookshelf books={books} changeShelf={this.changeShelf} key={key} title={title} />;
       bookshelfComponents.push(component);
     };
     return bookshelfComponents;
   }
 
+  changeShelf = (bookId, shelf) => {
+    this.setState((prevState) => {
+      const fullRecord = prevState.books[bookId];
+      fullRecord.shelf = shelf;
+      return ({
+        books: {
+          ...prevState.books,
+          [bookId]: fullRecord,
+        },
+      });
+    });
+  }
+
   render() {
-    const { bookshelves } = this.state;
+    const { books } = this.state;
+    const bookshelves = this.assignBooksToShelves(books);
     const bookshelfComponents = this.prepareBookshelfComponents(bookshelves);
 
     return (

@@ -8,13 +8,19 @@ const titles = {
 };
 
 export const Bookshelf = (props) => {
-  const { books, title } = props;
+  const { books, changeShelf, title } = props;
   const shelfTitle = titles[title];
   const booksGrid = (
     <ol className="books-grid">
       {books.map((b, i) =>
         <li key={i}>
-          <Book authors={b.authors} title={b.title} image={b.image} />
+          <Book
+            authors={b.authors}
+            changeShelf={changeShelf}
+            id={b.id}
+            image={b.image}
+            title={b.title}
+          />
         </li>
       )}
     </ol>

@@ -17,6 +17,7 @@ module.exports = {
     'object-curly-spacing': ['error', 'always'],
     'prefer-destructuring': 'error',
     'react/jsx-uses-react': 'error',
+    'react/jsx-sort-props': 'error',
     'react/jsx-uses-vars': 'error',
     'sort-imports': 'error',
     'sort-keys': ['error', 'asc'],
