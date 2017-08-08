@@ -3,7 +3,6 @@ import React from 'react';
 
 export const Bookshelf = (props) => {
   const { books, title } = props;
-  console.log(books);
   const booksGrid = (
     <ol className="books-grid">
       {books.map((b, i) => <li key={i}><Book authors={b.authors} title={b.title} image={b.image} /></li>)}
