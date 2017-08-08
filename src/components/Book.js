@@ -3,11 +3,16 @@ import React from 'react';
 
 export const Book = ({ authors, image, title }) => {
   const imageURL = `url(${image})`;
-  console.log(imageURL);
+  const bookStyle = {
+    backgroundImage: imageURL,
+    height: 193,
+    width: 128,
+  };
+
   return (
     <div className="book">
       <div className="book-top">
-        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: imageURL }}></div>
+        <div className="book-cover" style={bookStyle}></div>
         <BookShelfChanger />
       </div>
       <div className="book-title">{title}</div>
