@@ -1,6 +1,8 @@
 module.exports = {
   env: {
     'browser': true,
+    'mocha': true,
+    'node': true,
   },
   parser: 'babel-eslint',
   plugins: [
