@@ -30,6 +30,7 @@ class ListBooks extends Component {
             authors: book.authors,
             id: book.id,
             image: book.imageLinks.smallThumbnail,
+            shelf: book.shelf,
             title: book.title,
           };
           bookshelves[book.shelf].push(simpleBook);

@@ -19,6 +19,7 @@ export const Bookshelf = (props) => {
             changeShelf={changeShelf}
             id={b.id}
             image={b.image}
+            shelf={b.shelf}
             title={b.title}
           />
         </li>
