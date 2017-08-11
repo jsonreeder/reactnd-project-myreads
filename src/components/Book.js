@@ -12,11 +12,19 @@ export const Book = ({ authors, changeShelf, shelf, id, image, title }) => {
   return (
     <div className="book">
       <div className="book-top">
-        <div className="book-cover" style={bookStyle}></div>
-        <BookShelfChanger bookId={id} changeShelf={changeShelf} currentShelf={shelf} />
+        <div className="book-cover" style={bookStyle} />
+        <BookShelfChanger
+          bookId={id}
+          changeShelf={changeShelf}
+          currentShelf={shelf}
+        />
       </div>
-      <div className="book-title">{title}</div>
-      <div className="book-authors">{authors}</div>
+      <div className="book-title">
+        {title}
+      </div>
+      <div className="book-authors">
+        {authors}
+      </div>
     </div>
   );
 };

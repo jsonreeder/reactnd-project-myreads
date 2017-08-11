@@ -7,7 +7,7 @@ const titles = {
   wantToRead: 'Want To Read',
 };
 
-export const Bookshelf = (props) => {
+export const Bookshelf = props => {
   const { books, changeShelf, title } = props;
   const shelfTitle = titles[title];
   const booksGrid = (
@@ -22,14 +22,16 @@ export const Bookshelf = (props) => {
             shelf={b.shelf}
             title={b.title}
           />
-        </li>
+        </li>,
       )}
     </ol>
   );
 
   return (
     <div className="bookshelf">
-      <h2 className="bookshelf-title">{shelfTitle}</h2>
+      <h2 className="bookshelf-title">
+        {shelfTitle}
+      </h2>
       <div className="bookshelf-books">
         {booksGrid}
       </div>

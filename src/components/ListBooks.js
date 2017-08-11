@@ -10,7 +10,7 @@ class ListBooks extends Component {
   componentWillReceiveProps(newProps) {
     const { books } = newProps;
     const idsToBooks = {};
-    books.forEach((b) => {
+    books.forEach(b => {
       idsToBooks[b.id] = b;
     });
     this.setState({ books: idsToBooks });
@@ -46,25 +46,31 @@ class ListBooks extends Component {
     for (let key in bookshelves) {
       const books = bookshelves[key];
       const title = key;
-      const component =
-        <Bookshelf books={books} changeShelf={this.changeShelf} key={key} title={title} />;
+      const component = (
+        <Bookshelf
+          books={books}
+          changeShelf={this.changeShelf}
+          key={key}
+          title={title}
+        />
+      );
       bookshelfComponents.push(component);
-    };
+    }
     return bookshelfComponents;
   }
 
   changeShelf = (bookId, shelf) => {
-    this.setState((prevState) => {
+    this.setState(prevState => {
       const fullRecord = prevState.books[bookId];
       fullRecord.shelf = shelf;
-      return ({
+      return {
         books: {
           ...prevState.books,
           [bookId]: fullRecord,
         },
-      });
+      };
     });
-  }
+  };
 
   render() {
     const { books } = this.state;
@@ -87,6 +93,6 @@ class ListBooks extends Component {
       </div>
     );
   }
-};
+}
 
 export default ListBooks;
