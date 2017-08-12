@@ -1,7 +1,7 @@
 module.exports = {
   env: {
     'browser': true,
-    'mocha': true,
+    'jest': true,
     'node': true,
   },
   extends: [
@@ -14,6 +14,7 @@ module.exports = {
   plugins: [
     'react',
     'prettier',
+    'jest',
   ],
   rules: {
     'prettier/prettier': ['error', {
