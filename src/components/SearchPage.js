@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 class SearchPage extends Component {
   state = {
     query: '',
+    results: [],
   };
 
   onChange(e) {
@@ -12,6 +13,8 @@ class SearchPage extends Component {
   }
 
   render() {
+    const { query } = this.state;
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -23,6 +26,7 @@ class SearchPage extends Component {
               onChange={e => this.onChange(e)}
               placeholder="Search by title or author"
               type="text"
+              value={query}
             />
           </div>
         </div>

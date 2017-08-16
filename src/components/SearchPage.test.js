@@ -26,5 +26,10 @@ describe('SearchPage', () => {
     it('should update the state to `query`', () => {
       expect(wrapper.state().query).toEqual(query);
     });
+
+    it('should display the text', () => {
+      const populatedInput = wrapper.find('input').first();
+      expect(populatedInput.props().value).toEqual(query);
+    });
   });
 });
