@@ -1,19 +1,43 @@
+import * as BooksAPI from '../utils/BooksAPI';
 import React, { Component } from 'react';
+import { BooksGrid } from './BooksGrid';
 import { Link } from 'react-router-dom';
 
 class SearchPage extends Component {
   state = {
+    books: [],
     query: '',
-    results: [],
   };
 
   onChange(e) {
     const query = e.target.value;
     this.setState({ query });
+    BooksAPI.search(query).then(books => {
+      const simpleBooks = this.simplifyBooks(books);
+      this.setState({ books: simpleBooks });
+    });
+  }
+
+  simplifyBooks(books) {
+    if (!!books && !books.hasOwnProperty('error')) {
+      return books.map(book => ({
+        authors: book.authors,
+        id: book.id,
+        image: book.imageLinks.smallThumbnail,
+        shelf: book.shelf,
+        title: book.title,
+      }));
+    } else {
+      return [];
+    }
+  }
+
+  changeShelf() {
+    return;
   }
 
   render() {
-    const { query } = this.state;
+    const { books, query } = this.state;
 
     return (
       <div className="search-books">
@@ -31,7 +55,7 @@ class SearchPage extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid" />
+          <BooksGrid books={books} changeShelf={this.changeShelf} />
         </div>
       </div>
     );
