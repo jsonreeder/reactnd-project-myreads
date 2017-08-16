@@ -1,2 +1,2 @@
 export { default as ListBooks } from './ListBooks';
-export { SearchPage } from './SearchPage';
+export { default as SearchPage } from './SearchPage';
