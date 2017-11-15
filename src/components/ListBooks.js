@@ -8,7 +8,17 @@ class ListBooks extends Component {
   };
 
   componentWillReceiveProps(newProps) {
+    console.log(newProps);
     const { books } = newProps;
+    const idsToBooks = {};
+    books.forEach(b => {
+      idsToBooks[b.id] = b;
+    });
+    this.setState({ books: idsToBooks });
+  }
+
+  componentWillMount() {
+    const { books } = this.props;
     const idsToBooks = {};
     books.forEach(b => {
       idsToBooks[b.id] = b;
