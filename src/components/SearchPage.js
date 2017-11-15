@@ -12,10 +12,11 @@ class SearchPage extends Component {
   onChange(e) {
     const query = e.target.value;
     this.setState({ query });
-    BooksAPI.search(query).then(books => {
-      const simpleBooks = this.simplifyBooks(books);
-      this.setState({ books: simpleBooks });
-    });
+    query &&
+      BooksAPI.search(query, 4).then(books => {
+        const simpleBooks = this.simplifyBooks(books);
+        this.setState({ books: simpleBooks });
+      });
   }
 
   simplifyBooks(books) {
@@ -23,7 +24,7 @@ class SearchPage extends Component {
       return books.map(book => ({
         authors: book.authors,
         id: book.id,
-        image: book.imageLinks.smallThumbnail,
+        image: book.imageLinks && book.imageLinks.smallThumbnail,
         shelf: book.shelf,
         title: book.title,
       }));
