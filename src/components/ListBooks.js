@@ -8,17 +8,19 @@ class ListBooks extends Component {
   };
 
   componentWillReceiveProps(newProps) {
-    console.log(newProps);
     const { books } = newProps;
-    const idsToBooks = {};
-    books.forEach(b => {
-      idsToBooks[b.id] = b;
-    });
-    this.setState({ books: idsToBooks });
+    this.storeBooksById(books);
   }
 
   componentWillMount() {
     const { books } = this.props;
+    this.storeBooksById(books);
+  }
+
+  storeBooksById(books) {
+    if (!books) {
+      return;
+    }
     const idsToBooks = {};
     books.forEach(b => {
       idsToBooks[b.id] = b;
