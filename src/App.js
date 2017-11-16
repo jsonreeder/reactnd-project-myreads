@@ -6,11 +6,24 @@ import { Route } from 'react-router-dom';
 
 class BooksApp extends Component {
   state = {
-    books: [],
+    books: {},
   };
 
-  componentDidMount() {
-    BooksAPI.getAll().then(books => this.setState({ books }));
+  async componentDidMount() {
+    const books = await BooksAPI.getAll();
+    console.log('books', books);
+    this.storeBooksById(books);
+  }
+
+  storeBooksById(books) {
+    if (!books.length) {
+      return;
+    }
+    const idsToBooks = {};
+    books.forEach(b => {
+      idsToBooks[b.id] = b;
+    });
+    this.setState({ books: idsToBooks });
   }
 
   addBook(book, shelf) {

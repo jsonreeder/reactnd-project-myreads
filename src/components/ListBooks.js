@@ -4,20 +4,6 @@ import { Bookshelf } from './Bookshelf';
 import { Link } from 'react-router-dom';
 
 class ListBooks extends Component {
-  state = {
-    books: {},
-  };
-
-  componentWillReceiveProps(newProps) {
-    const { books } = newProps;
-    this.storeBooksById(books);
-  }
-
-  componentWillMount() {
-    const { books } = this.props;
-    this.storeBooksById(books);
-  }
-
   storeBooksById(books) {
     if (!books) {
       return;
@@ -88,7 +74,7 @@ class ListBooks extends Component {
   };
 
   render() {
-    const { books } = this.state;
+    const { books } = this.props;
     const bookshelves = this.assignBooksToShelves(books);
     const bookshelfComponents = this.prepareBookshelfComponents(bookshelves);
 
