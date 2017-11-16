@@ -2,9 +2,8 @@ import { BookShelfChanger } from './BookShelfChanger';
 import React from 'react';
 
 export const Book = props => {
-  const { authors, changeShelf, shelf, id, image, title } = props;
-  const book = { authors, id, image, title };
-  const imageURL = `url(${image})`;
+  const { book, changeShelf, shelf } = props;
+  const imageURL = `url(${book.image})`;
   const bookStyle = {
     backgroundImage: imageURL,
     height: 193,
@@ -17,16 +16,16 @@ export const Book = props => {
         <div className="book-cover" style={bookStyle} />
         <BookShelfChanger
           book={book}
-          bookId={id}
+          bookId={book.id}
           changeShelf={changeShelf}
           currentShelf={shelf}
         />
       </div>
       <div className="book-title">
-        {title}
+        {book.title}
       </div>
       <div className="book-authors">
-        {authors}
+        {book.authors}
       </div>
     </div>
   );
