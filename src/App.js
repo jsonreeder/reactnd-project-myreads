@@ -33,12 +33,32 @@ class BooksApp extends Component {
     BooksAPI.update(book, shelf);
   }
 
+  changeShelf = (book, shelf) => {
+    const bookId = book.id;
+    this.setState(prevState => {
+      const fullRecord = prevState.books[bookId];
+      fullRecord.shelf = shelf;
+      return {
+        books: {
+          ...prevState.books,
+          [bookId]: fullRecord,
+        },
+      };
+    });
+    BooksAPI.update(book, shelf);
+  };
+
   render() {
     const { books } = this.state;
 
     return (
       <div className="app">
-        <Route exact path="/" render={() => <ListBooks books={books} />} />
+        <Route
+          exact
+          path="/"
+          render={() =>
+            <ListBooks books={books} changeShelf={this.changeShelf} />}
+        />
         <Route
           path="/search"
           render={() =>

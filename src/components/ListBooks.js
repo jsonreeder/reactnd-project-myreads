@@ -4,17 +4,6 @@ import { Bookshelf } from './Bookshelf';
 import { Link } from 'react-router-dom';
 
 class ListBooks extends Component {
-  storeBooksById(books) {
-    if (!books) {
-      return;
-    }
-    const idsToBooks = {};
-    books.forEach(b => {
-      idsToBooks[b.id] = b;
-    });
-    this.setState({ books: idsToBooks });
-  }
-
   assignBooksToShelves(books) {
     const bookshelves = {
       currentlyReading: [],
@@ -41,6 +30,7 @@ class ListBooks extends Component {
   }
 
   prepareBookshelfComponents(bookshelves) {
+    const { changeShelf } = this.props;
     const bookshelfComponents = [];
     for (let key in bookshelves) {
       const books = bookshelves[key];
@@ -48,7 +38,7 @@ class ListBooks extends Component {
       const component = (
         <Bookshelf
           books={books}
-          changeShelf={this.changeShelf}
+          changeShelf={changeShelf}
           key={key}
           title={title}
         />
@@ -57,21 +47,6 @@ class ListBooks extends Component {
     }
     return bookshelfComponents;
   }
-
-  changeShelf = (book, shelf) => {
-    const bookId = book.id;
-    this.setState(prevState => {
-      const fullRecord = prevState.books[bookId];
-      fullRecord.shelf = shelf;
-      return {
-        books: {
-          ...prevState.books,
-          [bookId]: fullRecord,
-        },
-      };
-    });
-    BooksAPI.update(book, shelf);
-  };
 
   render() {
     const { books } = this.props;
