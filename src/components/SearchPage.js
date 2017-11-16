@@ -14,23 +14,8 @@ class SearchPage extends Component {
     this.setState({ query });
     query &&
       BooksAPI.search(query, 4).then(books => {
-        const simpleBooks = this.simplifyBooks(books);
-        this.setState({ books: simpleBooks });
+        this.setState({ books });
       });
-  }
-
-  simplifyBooks(books) {
-    if (!!books && !books.hasOwnProperty('error')) {
-      return books.map(book => ({
-        authors: book.authors,
-        id: book.id,
-        image: book.imageLinks && book.imageLinks.smallThumbnail,
-        shelf: book.shelf,
-        title: book.title,
-      }));
-    } else {
-      return [];
-    }
   }
 
   render() {

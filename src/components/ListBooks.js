@@ -13,14 +13,7 @@ class ListBooks extends Component {
       for (let id in books) {
         if (books.hasOwnProperty(id)) {
           const book = books[id];
-          const simpleBook = {
-            authors: book.authors,
-            id: book.id,
-            image: book.imageLinks && book.imageLinks.smallThumbnail,
-            shelf: book.shelf,
-            title: book.title,
-          };
-          bookshelves[book.shelf].push(simpleBook);
+          bookshelves[book.shelf].push(book);
         }
       }
     }

@@ -3,7 +3,7 @@ import React from 'react';
 
 export const Book = props => {
   const { book, changeShelf, shelf } = props;
-  const imageURL = `url(${book.image})`;
+  const imageURL = `url(${book.imageLinks.smallThumbnail})`;
   const bookStyle = {
     backgroundImage: imageURL,
     height: 193,
