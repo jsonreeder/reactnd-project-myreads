@@ -52,7 +52,6 @@ class BooksApp extends Component {
 
   render() {
     const { books } = this.state;
-    console.log('books', books);
 
     return (
       <div className="app">
