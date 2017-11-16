@@ -34,7 +34,6 @@ class SearchPage extends Component {
   }
 
   removeResult(bookId) {
-    console.log(bookId);
     this.setState(state => ({
       books: state.books.filter(b => b.id !== bookId),
     }));
