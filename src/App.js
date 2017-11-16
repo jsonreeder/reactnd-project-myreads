@@ -11,7 +11,6 @@ class BooksApp extends Component {
 
   async componentDidMount() {
     const books = await BooksAPI.getAll();
-    console.log('books', books);
     this.storeBooksById(books);
   }
 
@@ -26,12 +25,15 @@ class BooksApp extends Component {
     this.setState({ books: idsToBooks });
   }
 
-  addBook(book, shelf) {
-    const { books } = this.state;
-    const newBook = { ...book, shelf };
-    this.setState({ books: [...books, newBook] });
+  addBook = (book, shelf) => {
+    const newBook = { [book.id]: { ...book, shelf } };
+
+    this.setState(prevState => {
+      const { books } = prevState;
+      return { books: { ...books, ...newBook } };
+    });
     BooksAPI.update(book, shelf);
-  }
+  };
 
   changeShelf = (book, shelf) => {
     const bookId = book.id;
@@ -50,6 +52,7 @@ class BooksApp extends Component {
 
   render() {
     const { books } = this.state;
+    console.log('books', books);
 
     return (
       <div className="app">
@@ -62,10 +65,7 @@ class BooksApp extends Component {
         <Route
           path="/search"
           render={() =>
-            <SearchPage
-              addBook={(book, shelf) => this.addBook(book, shelf)}
-              currentBooks={books}
-            />}
+            <SearchPage addBook={this.addBook} currentBooks={books} />}
         />
       </div>
     );

@@ -9,7 +9,7 @@ export const BooksGrid = props => {
       return book.shelf;
     }
 
-    const bookInfo = currentBooks.find(b => b.id === book.id);
+    const bookInfo = currentBooks[book.id];
     return bookInfo && bookInfo.shelf;
   };
 
