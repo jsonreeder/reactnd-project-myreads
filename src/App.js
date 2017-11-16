@@ -16,7 +16,7 @@ class BooksApp extends Component {
   addBook(book, shelf) {
     const { books } = this.state;
     const newBook = { ...book, shelf };
-    this.setState({ boooks: { ...books, newBook } });
+    this.setState({ books: [...books, newBook] });
     BooksAPI.update(book, shelf);
   }
 

@@ -41,7 +41,7 @@ class ListBooks extends Component {
           const simpleBook = {
             authors: book.authors,
             id: book.id,
-            image: book.imageLinks.smallThumbnail,
+            image: book.imageLinks && book.imageLinks.smallThumbnail,
             shelf: book.shelf,
             title: book.title,
           };
@@ -71,7 +71,8 @@ class ListBooks extends Component {
     return bookshelfComponents;
   }
 
-  changeShelf = (bookId, shelf) => {
+  changeShelf = (book, shelf) => {
+    const bookId = book.id;
     this.setState(prevState => {
       const fullRecord = prevState.books[bookId];
       fullRecord.shelf = shelf;
