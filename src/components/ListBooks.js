@@ -1,3 +1,4 @@
+import * as BooksAPI from '../utils/BooksAPI';
 import React, { Component } from 'react';
 import { Bookshelf } from './Bookshelf';
 import { Link } from 'react-router-dom';
@@ -83,6 +84,7 @@ class ListBooks extends Component {
         },
       };
     });
+    BooksAPI.update(book, shelf);
   };
 
   render() {
