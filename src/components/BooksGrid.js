@@ -2,7 +2,7 @@ import { Book } from './Book';
 import React from 'react';
 
 export const BooksGrid = props => {
-  const { books, changeShelf } = props;
+  const { books, changeShelf, removeResult } = props;
   return (
     <ol className="books-grid">
       {books.map((b, i) =>
@@ -12,6 +12,7 @@ export const BooksGrid = props => {
             changeShelf={changeShelf}
             id={b.id}
             image={b.image}
+            removeResult={removeResult}
             shelf={b.shelf}
             title={b.title}
           />

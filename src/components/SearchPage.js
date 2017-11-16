@@ -33,6 +33,13 @@ class SearchPage extends Component {
     }
   }
 
+  removeResult(bookId) {
+    console.log(bookId);
+    this.setState(state => ({
+      books: state.books.filter(b => b.id !== bookId),
+    }));
+  }
+
   render() {
     const { books, query } = this.state;
     const { addBook } = this.props;
@@ -53,7 +60,11 @@ class SearchPage extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          <BooksGrid books={books} changeShelf={addBook} />
+          <BooksGrid
+            books={books}
+            changeShelf={addBook}
+            removeResult={bookId => this.removeResult(bookId)}
+          />
         </div>
       </div>
     );
