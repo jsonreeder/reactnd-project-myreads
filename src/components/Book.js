@@ -14,12 +14,7 @@ export const Book = props => {
     <div className="book">
       <div className="book-top">
         <div className="book-cover" style={bookStyle} />
-        <BookShelfChanger
-          book={book}
-          bookId={book.id}
-          changeShelf={changeShelf}
-          currentShelf={shelf}
-        />
+        <BookShelfChanger book={book} changeShelf={changeShelf} shelf={shelf} />
       </div>
       <div className="book-title">
         {book.title}
