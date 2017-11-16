@@ -15,17 +15,18 @@ export const BooksGrid = props => {
 
   return (
     <ol className="books-grid">
-      {books.map(
-        (b, i) =>
-          !!b &&
-          <li key={i}>
-            <Book
-              book={b}
-              changeShelf={changeShelf}
-              shelf={getShelf(b, currentBooks)}
-            />
-          </li>,
-      )}
+      {!!books.length &&
+        books.map(
+          (b, i) =>
+            !!b &&
+            <li key={i}>
+              <Book
+                book={b}
+                changeShelf={changeShelf}
+                shelf={getShelf(b, currentBooks)}
+              />
+            </li>,
+        )}
     </ol>
   );
 };
