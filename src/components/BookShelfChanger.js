@@ -1,18 +1,11 @@
 import React from 'react';
 
-export const BookShelfChanger = ({
-  book,
-  bookId,
-  changeShelf,
-  currentShelf,
-  removeResult,
-}) =>
+export const BookShelfChanger = ({ book, bookId, changeShelf, currentShelf }) =>
   <div className="book-shelf-changer">
     <select
       onChange={e => {
         const shelf = e.target.value;
         console.log(currentShelf);
-        removeResult(book.id);
         return changeShelf(book, shelf);
       }}
       value={currentShelf}

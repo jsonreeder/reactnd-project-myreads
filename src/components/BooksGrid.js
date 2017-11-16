@@ -2,7 +2,7 @@ import { Book } from './Book';
 import React from 'react';
 
 export const BooksGrid = props => {
-  const { books, changeShelf, currentBooks, removeResult } = props;
+  const { books, changeShelf, currentBooks } = props;
 
   const getShelf = (book, currentBooks) => {
     if (book.shelf) {
@@ -22,7 +22,6 @@ export const BooksGrid = props => {
             changeShelf={changeShelf}
             id={b.id}
             image={b.image}
-            removeResult={removeResult}
             shelf={getShelf(b, currentBooks)}
             title={b.title}
           />

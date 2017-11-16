@@ -33,12 +33,6 @@ class SearchPage extends Component {
     }
   }
 
-  removeResult(bookId) {
-    this.setState(state => ({
-      books: state.books.filter(b => b.id !== bookId),
-    }));
-  }
-
   render() {
     const { books, query } = this.state;
     const { addBook, currentBooks } = this.props;
@@ -63,7 +57,6 @@ class SearchPage extends Component {
             books={books}
             changeShelf={addBook}
             currentBooks={currentBooks}
-            removeResult={bookId => this.removeResult(bookId)}
           />
         </div>
       </div>
