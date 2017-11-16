@@ -33,12 +33,9 @@ class SearchPage extends Component {
     }
   }
 
-  changeShelf() {
-    return;
-  }
-
   render() {
     const { books, query } = this.state;
+    const { addBook } = this.props;
 
     return (
       <div className="search-books">
@@ -56,7 +53,7 @@ class SearchPage extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          <BooksGrid books={books} changeShelf={this.changeShelf} />
+          <BooksGrid books={books} addBook={addBook} />
         </div>
       </div>
     );

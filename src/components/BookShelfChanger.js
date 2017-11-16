@@ -1,9 +1,19 @@
 import React from 'react';
 
-export const BookShelfChanger = ({ bookId, changeShelf, currentShelf }) =>
+export const BookShelfChanger = ({
+  addBook,
+  book,
+  bookId,
+  changeShelf,
+  currentShelf,
+}) =>
   <div className="book-shelf-changer">
     <select
-      onChange={e => changeShelf(bookId, e.target.value)}
+      onChange={e => {
+        const shelf = e.target.value;
+        const newBook = { ...book, shelf };
+        return addBook(newBook);
+      }}
       value={currentShelf}
     >
       <option disabled value="none">
