@@ -27,10 +27,12 @@ class BooksApp extends Component {
       <div className="app">
         <Route exact path="/" render={() => <ListBooks books={books} />} />
         <Route
-          books={books}
           path="/search"
           render={() =>
-            <SearchPage addBook={(book, shelf) => this.addBook(book, shelf)} />}
+            <SearchPage
+              addBook={(book, shelf) => this.addBook(book, shelf)}
+              currentBooks={books}
+            />}
         />
       </div>
     );

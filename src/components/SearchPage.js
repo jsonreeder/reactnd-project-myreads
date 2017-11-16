@@ -41,7 +41,7 @@ class SearchPage extends Component {
 
   render() {
     const { books, query } = this.state;
-    const { addBook } = this.props;
+    const { addBook, currentBooks } = this.props;
 
     return (
       <div className="search-books">
@@ -62,6 +62,7 @@ class SearchPage extends Component {
           <BooksGrid
             books={books}
             changeShelf={addBook}
+            currentBooks={currentBooks}
             removeResult={bookId => this.removeResult(bookId)}
           />
         </div>

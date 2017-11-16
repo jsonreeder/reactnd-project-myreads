@@ -11,9 +11,11 @@ export const BookShelfChanger = ({
     <select
       onChange={e => {
         const shelf = e.target.value;
+        console.log(currentShelf);
         removeResult(book.id);
         return changeShelf(book, shelf);
       }}
+      value={currentShelf}
     >
       <option value="">Move to...</option>
       <option value="currentlyReading">Currently Reading</option>
