@@ -53,7 +53,7 @@ class SearchPage extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          <BooksGrid books={books} addBook={addBook} />
+          <BooksGrid books={books} changeShelf={addBook} />
         </div>
       </div>
     );

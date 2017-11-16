@@ -13,9 +13,11 @@ class BooksApp extends Component {
     BooksAPI.getAll().then(books => this.setState({ books }));
   }
 
-  addBook(book) {
+  addBook(book, shelf) {
     const { books } = this.state;
-    this.setState({ boooks: { ...books, book } });
+    const newBook = { ...book, shelf };
+    this.setState({ boooks: { ...books, newBook } });
+    BooksAPI.update(book, shelf);
   }
 
   render() {
@@ -27,7 +29,8 @@ class BooksApp extends Component {
         <Route
           books={books}
           path="/search"
-          render={() => <SearchPage addBook={() => this.addBook()} />}
+          render={() =>
+            <SearchPage addBook={(book, shelf) => this.addBook(book, shelf)} />}
         />
       </div>
     );
