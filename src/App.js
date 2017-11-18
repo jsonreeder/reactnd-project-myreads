@@ -35,16 +35,16 @@ class BooksApp extends Component {
 
   changeShelf = (book, shelf) => {
     const bookId = book.id;
-    this.setState(prevState => {
-      const fullRecord = prevState.books[bookId];
-      fullRecord.shelf = shelf;
-      return {
-        books: {
-          ...prevState.books,
-          [bookId]: fullRecord,
+
+    this.setState(prevState => ({
+      books: {
+        ...prevState.books,
+        [bookId]: {
+          ...prevState.books[bookId],
+          shelf,
         },
-      };
-    });
+      },
+    }));
     BooksAPI.update(book, shelf);
   };
 
