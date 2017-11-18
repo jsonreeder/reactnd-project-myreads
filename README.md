@@ -24,6 +24,7 @@ I made this project as part of the Udacity React Nanodegree. It is designed afte
 - Jest
 - Enzyme
 - Prettier (formatting)
+- ESLint
 
 ## To Run
   - `npm install`
