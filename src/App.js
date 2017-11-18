@@ -15,13 +15,11 @@ class BooksApp extends Component {
   }
 
   storeBooksById(books) {
-    if (!books.length) {
-      return;
-    }
-    const idsToBooks = {};
-    books.forEach(b => {
-      idsToBooks[b.id] = b;
-    });
+    const idsToBooks = books.reduce((newBooks, b) => {
+      newBooks[b.id] = b;
+      return newBooks;
+    }, {});
+
     this.setState({ books: idsToBooks });
   }
 
