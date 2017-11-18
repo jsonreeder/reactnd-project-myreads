@@ -19,9 +19,31 @@ class SearchPage extends Component {
     this.setState({ books });
   }
 
-  render() {
+  renderBooksGrid() {
     const { books, query } = this.state;
     const { addBook, currentBooks } = this.props;
+
+    const noBooks = !!query
+      ? `No books found for your query: ${query}.`
+      : 'Search above to see books.';
+
+    return (
+      <div className="search-books-results">
+        {books.length
+          ? <BooksGrid
+              books={books}
+              changeShelf={addBook}
+              currentBooks={currentBooks}
+            />
+          : <p>
+              {noBooks}
+            </p>}
+      </div>
+    );
+  }
+
+  render() {
+    const { query } = this.state;
 
     return (
       <div className="search-books">
@@ -38,13 +60,7 @@ class SearchPage extends Component {
             />
           </div>
         </div>
-        <div className="search-books-results">
-          <BooksGrid
-            books={books}
-            changeShelf={addBook}
-            currentBooks={currentBooks}
-          />
-        </div>
+        {this.renderBooksGrid()}
       </div>
     );
   }
