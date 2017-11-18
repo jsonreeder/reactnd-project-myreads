@@ -11,16 +11,12 @@ class SearchPage extends Component {
 
   onChange(e) {
     const query = e.target.value;
-    this.fetchBooks(query);
-    /* this.setState({ query });*/
+    this.setState({ query }, () => this.fetchBooks(this.state.query));
   }
 
   async fetchBooks(query) {
-    if (!!query) {
-      const books = await BooksAPI.search(query);
-      console.log(books);
-      this.setState({ books });
-    }
+    const books = !!query ? await BooksAPI.search(query) : [];
+    this.setState({ books });
   }
 
   render() {
